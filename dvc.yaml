@@ -1,0 +1,51 @@
+stages:
+  prepare:
+    cmd: python -m src.data prepare --output data/raw/iris.csv
+    deps:
+      - src/__init__.py
+      - src/data.py
+      - src/schema.py
+      - requirements.txt
+      - requirements-serving.txt
+      - requirements.lock
+      - requirements-serving.lock
+    outs:
+      - data/raw/iris.csv
+  validate:
+    cmd: python -m src.data validate --data data/raw/iris.csv --report reports/data_validation.json
+    deps:
+      - data/raw/iris.csv
+      - src/data.py
+      - src/schema.py
+      - requirements.txt
+      - requirements-serving.txt
+      - requirements.lock
+      - requirements-serving.lock
+    outs:
+      - reports/data_validation.json:
+          cache: false
+  train:
+    cmd: python -m src.train --data data/raw/iris.csv --params params.yaml --output models/iris --metrics reports/metrics.json
+    deps:
+      - data/raw/iris.csv
+      - reports/data_validation.json
+      - src/__init__.py
+      - src/data.py
+      - src/schema.py
+      - src/config.py
+      - src/artifacts.py
+      - src/train.py
+      - requirements.txt
+      - requirements-serving.txt
+      - requirements.lock
+      - requirements-serving.lock
+    params:
+      - split
+      - model
+      - quality
+      - tracking
+    outs:
+      - models/iris
+    metrics:
+      - reports/metrics.json:
+          cache: false

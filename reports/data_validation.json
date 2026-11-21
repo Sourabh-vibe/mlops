@@ -1,0 +1,16 @@
+{
+  "class_counts": {
+    "setosa": 50,
+    "versicolor": 50,
+    "virginica": 50
+  },
+  "dataset_sha256": "c52da941c4117668428d973554bb3380ba78c23400c2848e9b65107d63ccba47",
+  "feature_names": [
+    "sepal_length",
+    "sepal_width",
+    "petal_length",
+    "petal_width"
+  ],
+  "rows": 150,
+  "valid": true
+}

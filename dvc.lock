@@ -1,0 +1,150 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.data prepare --output data/raw/iris.csv
+    deps:
+    - path: requirements-serving.lock
+      hash: md5
+      md5: cfd38565b76fc56eca287fed1f0f2ded
+      size: 34419
+    - path: requirements-serving.txt
+      hash: md5
+      md5: 2571b5d3ff376960d9be50b1fd8ab296
+      size: 192
+    - path: requirements.lock
+      hash: md5
+      md5: a9acb534ed49c9351caa9838bf70ad2e
+      size: 255971
+    - path: requirements.txt
+      hash: md5
+      md5: c4f345e4a4056e41b96d27d3d0ada437
+      size: 226
+    - path: src/__init__.py
+      hash: md5
+      md5: d3d7292a7814e1d8551bc069e29d5716
+      size: 57
+    - path: src/data.py
+      hash: md5
+      md5: 9c961fea54ba6ca1747c63dcc81bcc8f
+      size: 3016
+    - path: src/schema.py
+      hash: md5
+      md5: 25ed654dcbc5c300c4ae7ab18672c225
+      size: 1251
+    outs:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2757
+  validate:
+    cmd: python -m src.data validate --data data/raw/iris.csv --report 
+      reports/data_validation.json
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2757
+    - path: requirements-serving.lock
+      hash: md5
+      md5: cfd38565b76fc56eca287fed1f0f2ded
+      size: 34419
+    - path: requirements-serving.txt
+      hash: md5
+      md5: 2571b5d3ff376960d9be50b1fd8ab296
+      size: 192
+    - path: requirements.lock
+      hash: md5
+      md5: a9acb534ed49c9351caa9838bf70ad2e
+      size: 255971
+    - path: requirements.txt
+      hash: md5
+      md5: c4f345e4a4056e41b96d27d3d0ada437
+      size: 226
+    - path: src/data.py
+      hash: md5
+      md5: 9c961fea54ba6ca1747c63dcc81bcc8f
+      size: 3016
+    - path: src/schema.py
+      hash: md5
+      md5: 25ed654dcbc5c300c4ae7ab18672c225
+      size: 1251
+    outs:
+    - path: reports/data_validation.json
+      hash: md5
+      md5: cf6aeac368d8acdb3489de7861d01d07
+      size: 327
+  train:
+    cmd: python -m src.train --data data/raw/iris.csv --params params.yaml 
+      --output models/iris --metrics reports/metrics.json
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2757
+    - path: reports/data_validation.json
+      hash: md5
+      md5: cf6aeac368d8acdb3489de7861d01d07
+      size: 327
+    - path: requirements-serving.lock
+      hash: md5
+      md5: cfd38565b76fc56eca287fed1f0f2ded
+      size: 34419
+    - path: requirements-serving.txt
+      hash: md5
+      md5: 2571b5d3ff376960d9be50b1fd8ab296
+      size: 192
+    - path: requirements.lock
+      hash: md5
+      md5: a9acb534ed49c9351caa9838bf70ad2e
+      size: 255971
+    - path: requirements.txt
+      hash: md5
+      md5: c4f345e4a4056e41b96d27d3d0ada437
+      size: 226
+    - path: src/__init__.py
+      hash: md5
+      md5: d3d7292a7814e1d8551bc069e29d5716
+      size: 57
+    - path: src/artifacts.py
+      hash: md5
+      md5: 97f52c2728f7f3729af0df42dc3b3956
+      size: 3520
+    - path: src/config.py
+      hash: md5
+      md5: 283abc4a74e668a64ee1f92076db6baf
+      size: 1279
+    - path: src/data.py
+      hash: md5
+      md5: 9c961fea54ba6ca1747c63dcc81bcc8f
+      size: 3016
+    - path: src/schema.py
+      hash: md5
+      md5: 25ed654dcbc5c300c4ae7ab18672c225
+      size: 1251
+    - path: src/train.py
+      hash: md5
+      md5: 7bc7b1cc7ff009e9fcd7dfd24785d989
+      size: 5857
+    params:
+      params.yaml:
+        model:
+          n_estimators: 200
+          max_depth: 5
+          random_state: 42
+        quality:
+          min_accuracy: 0.9
+        split:
+          test_size: 0.2
+          random_state: 42
+        tracking:
+          experiment_name: iris-random-forest
+    outs:
+    - path: models/iris
+      hash: md5
+      md5: db00bc6f0ead05d1f6c0e5b0ae795a7e.dir
+      size: 43771
+      nfiles: 2
+    - path: reports/metrics.json
+      hash: md5
+      md5: d332ec9f3465545810b458d79021dd92
+      size: 107

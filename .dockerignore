@@ -1,0 +1,14 @@
+**
+!requirements-serving.txt
+!requirements-serving.lock
+!api/
+!api/__init__.py
+!api/app.py
+!src/
+!src/__init__.py
+!src/schema.py
+!src/artifacts.py
+!models/
+!models/iris/
+!models/iris/model.joblib
+!models/iris/metadata.json

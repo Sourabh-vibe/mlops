@@ -1,0 +1,11 @@
+split:
+  test_size: 0.2
+  random_state: 42
+model:
+  n_estimators: 200
+  max_depth: 5
+  random_state: 42
+quality:
+  min_accuracy: 0.9
+tracking:
+  experiment_name: iris-random-forest

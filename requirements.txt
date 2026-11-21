@@ -1,0 +1,11 @@
+-r requirements-serving.txt
+mlflow==3.6.0
+dvc==3.64.0
+# Compatibility constraints for these DVC and MLflow releases.
+pathspec==0.12.1
+SQLAlchemy==2.0.44
+PyYAML==6.0.3
+pytest==8.4.2
+pytest-cov==7.0.0
+httpx==0.28.1
+ruff==0.14.4

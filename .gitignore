@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+test-results.xml
+.env
+*.db
+*.db-shm
+*.db-wal
+mlruns/
+mlartifacts/
+.validation/
+# DVC tracks these generated outputs through dvc.lock.
+/data/raw/
+/models/iris/
